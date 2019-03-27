@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <h2>Turno: {{turno}}</h2>
+  <div class="row">
+    <div class="col-4">
+
+    </div>
+    <div class="col-4">
+      <table class="tablero mt-5">
+        <tbody>
+          <tr *ngFor="let fila of tablero; let indiceFila = index">
+            <td *ngFor="let columna of fila; let indiceColumna = index" (click)="juegaHumano(indiceFila,indiceColumna)">
+              <i class="{{tablero[indiceFila][indiceColumna]}}"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <button type="button" class="btn btn-primary mt-2" (click)="sortearPrimerTurno()"><h2>Jugar</h2></button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label>Nivel</label>
+        <select class="form-control" [(ngModel)]="nivelSeleccionado" (change)="sortearPrimerTurno()">
+          <option *ngFor="let nivel of niveles" value="{{nivel.id}}">{{nivel.descripcion}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+        <button type="button" class="btn btn-primary mt-2" (click)="switchReloj()"><h2 *ngIf="!activo">Activar</h2><h2 *ngIf="activo">Desactivar</h2></button>
+        <h1>{{horas}}:{{minutos}}:{{segundos}}</h1>
+        <h1>{{horas2}}:{{minutos2}}:{{segundos2}}</h1>
+    </div>
+  </div>
+</div>
